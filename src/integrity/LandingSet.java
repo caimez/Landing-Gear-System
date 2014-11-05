@@ -17,61 +17,58 @@ public class LandingSet extends Observable{
 		door = new Door();
 		wheel = new Wheel();
 	}
-	  
-	public void setValueDoor(String newState)
+	
+	public void setValueDoor(String newState, int time)
 	{
 	    // if value has changed notify observers
 	      if(!this.door.getPositionDoor().equals(newState)) {
-	         System.out.println("      DOOR # " + this.getSystemeName());
-	         this.door.setPositionDoor(newState);
+	         System.out.println("START PROCESS DOOR # " + this.getSystemeName() + "\n");
+	         this.door.setPositionDoor(Constantes.processingDoor);
 	         
 	         // mark as value changed
 	         setChanged();
 	         // trigger notification
 	         notifyObservers(this.getStateDoor());
-	         
+	        	 			
 	 		try{
-	 			Constantes cst = new Constantes();
 	 			Thread.sleep(1000);
-	 			newState = cst.closeDoor;
-				}catch(InterruptedException e){
+	 			this.door.setPositionDoor(newState);
+			}catch(InterruptedException e){
+	 			this.door.setPositionDoor(Constantes.error);
 				System.out.println(e.getMessage()); 
-				}
-	 		
-	 		
-	         this.door.setPositionDoor(newState);
-	         
+			}
+	 			
 	         // mark as value changed
 	         setChanged();
+	         
 	         // trigger notification
 	         notifyObservers(this.getStateDoor());
 	      }
 	}
 
-	public void setValueWheel(String newState)
+	public void setValueWheel(String newState, int time)
 	{
 	    // if value has changed notify observers
-	      if(!this.wheel.getPositionWheel().equals(newState)) {
-	         System.out.println("      WHEEL #" + this.getSystemeName());
-	         this.wheel.setPositionWheel(newState);
-	         
-	         // mark as value changed
-	         setChanged();
-	         // trigger notification
-	         notifyObservers(this.getStateWheel());
-	         
+		if(!this.wheel.getPositionWheel().equals(newState)) {
+			System.out.println("START PROCESS WHEEL #" + this.getSystemeName()  + "\n");
+			this.wheel.setPositionWheel(Constantes.processingWheel);
+			 
+			// mark as value changed
+			setChanged();
+			// trigger notification
+			notifyObservers(this.getStateWheel());
+	         			
 	 		try{
-	 			Constantes cst = new Constantes();
 	 			Thread.sleep(1000);
-	 			newState = cst.insideWheel;
-		         this.wheel.setPositionWheel(newState);
-
-				}catch(InterruptedException e){
-					System.out.println(e.getMessage()); 
-				}
+		        this.wheel.setPositionWheel(newState);
+			}catch(InterruptedException e){
+		        this.wheel.setPositionWheel(Constantes.error);
+				System.out.println(e.getMessage()); 
+			}
 	         
 	         // mark as value changed
 	         setChanged();
+	         
 	         // trigger notification
 	         notifyObservers(this.getStateWheel());
 	      }
@@ -80,32 +77,30 @@ public class LandingSet extends Observable{
 	
 	public String getStateWheel(){
 		String msg = null;
-		Constantes cst = new Constantes();
 		
-		if(this.wheel.getPositionWheel().equals(cst.insideWheel)){
-			msg = " INSIDE WHEEL ";
-		}else if(this.wheel.getPositionWheel().equals(cst.outsideWheel)){
-			msg = " OUTSIDE WHEEL ";
-		}else if(this.wheel.getPositionWheel().equals(cst.processingWheel)){
-			msg = " PROCESSING WHEEL ";
+		if(this.wheel.getPositionWheel().equals(Constantes.insideWheel)){
+			msg = " INSIDE WHEEL " + this.getSystemeName()  + "\n";
+		}else if(this.wheel.getPositionWheel().equals(Constantes.outsideWheel)){
+			msg = " OUTSIDE WHEEL " + this.getSystemeName()  + "\n";
+		}else if(this.wheel.getPositionWheel().equals(Constantes.processingWheel)){
+			msg = " PROCESSING WHEEL " + this.getSystemeName()  + "\n";
 		}else{
-			msg = " ERROR";
+			msg = " ERROR WHEEL"  + this.getSystemeName()  + "\n";
 		}
 		return msg;
 	}
 	
 	public String getStateDoor() {
 		String msg = null;
-		Constantes cst = new Constantes();
 		
-		if(this.door.getPositionDoor().equals(cst.closeDoor)){
-			msg = " CLOSE DOOR ";
-		}else if(this.door.getPositionDoor().equals(cst.openDoor)){
-			msg = " OPEN DOOR ";
-		}else if(this.door.getPositionDoor().equals(cst.processingDoor)){
-			msg = " PROCESSING DOOR ";
+		if(this.door.getPositionDoor().equals(Constantes.closeDoor)){
+			msg = " CLOSE DOOR "  + this.getSystemeName()  + "\n";
+		}else if(this.door.getPositionDoor().equals(Constantes.openDoor)){
+			msg = " OPEN DOOR "  + this.getSystemeName()  + "\n";
+		}else if(this.door.getPositionDoor().equals(Constantes.processingDoor)){
+			msg = " PROCESSING DOOR "  + this.getSystemeName()  + "\n";
 		}else{
-			msg = " ERROR";
+			msg = " ERROR DOOR "  + this.getSystemeName()  + "\n";
 		}
 		return msg;
 	}
