@@ -1,18 +1,20 @@
 package vo;
 
+import utils.Constantes;
+
 
 public class Door{
-	private String positionDoor; // OUT=0, IN=1, TRANSIT=2
+	private int positionDoor; // OUT=0, IN=1, TRANSIT=2
 
 	public Door(){
-		this.positionDoor = "0";
+		this.positionDoor = Constantes.OPEN_DOOR;
 	}
 
-	public String getPositionDoor() {
+	public int getPositionDoor() {
 		return positionDoor;
 	}
 
-	public void setPositionDoor(String position) {
+	public void setPositionDoor(int position) {
 		this.positionDoor = position;
 	}
 

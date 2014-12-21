@@ -1,6 +1,7 @@
 package processing;
 
 import integrity.LandingSet;
+import utils.Constantes;
 
 public class ProcessOutputLandingSet implements Runnable{
 
@@ -12,8 +13,8 @@ public class ProcessOutputLandingSet implements Runnable{
 	
 	@Override
 	public void run() {
-		this.land.setValueDoor("0", 1000);
-		this.land.setValueWheel("0", 2000);
+		this.land.setValueDoor(Constantes.OUTSIDE_WHEEL);
+		this.land.setValueWheel(Constantes.OPEN_DOOR);
 		System.out.println("---------- END PROCESS OUTPUT OF THE LANDING SET : " + this.land.getSystemeName() + " ---------\n");
 	}
 

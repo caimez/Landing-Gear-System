@@ -1,18 +1,20 @@
 package vo;
 
+import utils.Constantes;
+
 
 public class Wheel{
-	private String positionWheel; // OUT=0, IN=1, TRANSIT=2s
+	private int positionWheel; // OUT=0, IN=1, TRANSIT=2s
 	
 	public Wheel(){
-		this.positionWheel = "0";
+		this.positionWheel = Constantes.OUTSIDE_WHEEL;
 	}
 
-	public String getPositionWheel() {
+	public int getPositionWheel() {
 		return positionWheel;
 	}
 
-	public void setPositionWheel(String position) {
+	public void setPositionWheel(int position) {
 		this.positionWheel = position;
 	}
 }
